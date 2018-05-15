@@ -32,6 +32,8 @@ namespace Client
             NetworkStream ClientNS = Client.GetStream();
             SslStream SslStreamToWrite = new SslStream(ClientNS, false, new RemoteCertificateValidationCallback(ValidationCertificate));
 
+            SslStreamToWrite.AuthenticateAsClient("rtd.certificate2018.test");
+
             Console.WriteLine("Escriu una frase:");
             string frase = Console.ReadLine();
 

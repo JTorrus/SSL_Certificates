@@ -58,6 +58,11 @@ namespace Server
             //Enviem al servidor
             ServerNS.Write(fraseBytes, 0, fraseBytes.Length);*/
 
+            
+            for (int i = 0; i < BytesRebuts; i++)
+            {
+                //Console.Write();
+            }
             Console.WriteLine("Server finalitzat");
 
             ServerNS.Close();
