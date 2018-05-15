@@ -59,10 +59,13 @@ namespace Server
             ServerNS.Write(fraseBytes, 0, fraseBytes.Length);*/
 
             
-            for (int i = 0; i < BytesRebuts; i++)
+            while (BytesRebuts != 0)
             {
-                //Console.Write();
+                BytesRebuts = ReceivedSslStream.Read(BufferLocal, 0, BufferLocal.Length);
+                s = s + Encoding.UTF8.GetString(BufferLocal, 0, BytesRebuts);
             }
+
+            Console.WriteLine(s);
             Console.WriteLine("Server finalitzat");
 
             ServerNS.Close();

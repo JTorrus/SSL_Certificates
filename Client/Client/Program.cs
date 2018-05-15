@@ -63,7 +63,7 @@ namespace Client
 
         private static bool ValidationCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
-            return true;
+            return sslPolicyErrors == SslPolicyErrors.None;
         }
     }
 }
