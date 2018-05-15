@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Client
 {
@@ -29,7 +30,7 @@ namespace Client
                 Console.WriteLine("Connectat al servidor");
 
             NetworkStream ClientNS = Client.GetStream();
-            SslStream SslStreamToWrite = new SslStream(ClientNS, false);
+            SslStream SslStreamToWrite = new SslStream(ClientNS, false, new RemoteCertificateValidationCallback(ValidationCertificate));
 
             Console.WriteLine("Escriu una frase:");
             string frase = Console.ReadLine();
@@ -56,6 +57,11 @@ namespace Client
             Client.Close();
 
             Console.ReadLine();
+        }
+
+        private static bool ValidationCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            return true;
         }
     }
 }

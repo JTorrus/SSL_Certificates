@@ -41,6 +41,8 @@ namespace Server
             NetworkStream ServerNS = Client.GetStream();
             SslStream ReceivedSslStream = new SslStream(ServerNS, false);
 
+            ReceivedSslStream.AuthenticateAsServer(ServerCertificate);
+
             byte[] BufferLocal = new byte[256];
             string s = "";
 
