@@ -38,9 +38,9 @@ namespace Client
             byte[] fraseBytes = Encoding.UTF8.GetBytes(frase);
             
             //Enviem al servidor
-            ClientNS.Write(fraseBytes, 0, fraseBytes.Length);
+            SslStreamToWrite.Write(fraseBytes, 0, fraseBytes.Length);
 
-            byte[] BufferLocal = new byte[256];
+            /*byte[] BufferLocal = new byte[256];
             string s = "";
 
             int BytesRebuts = ClientNS.Read(BufferLocal, 0, BufferLocal.Length);
@@ -48,7 +48,7 @@ namespace Client
             //Passem de bytes a string
             s = Encoding.UTF8.GetString(BufferLocal, 0, BytesRebuts);
 
-            Console.WriteLine("{0}", s);
+            Console.WriteLine("{0}", s);*/
 
             Console.WriteLine("final");
 

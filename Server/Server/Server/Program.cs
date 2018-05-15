@@ -6,6 +6,7 @@ using System.Threading;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Server
 {
@@ -14,6 +15,7 @@ namespace Server
         private static IPAddress ServerIP;
         private static int PortIP;
         private static IPEndPoint ServerEndPoint;
+        private static X509Certificate2 ServerCertificate;
 
         static void Main(string[] args)
         {
@@ -23,6 +25,8 @@ namespace Server
             ips = Dns.GetHostAddresses("127.0.0.1");
             ServerIP = ips[0];
             ServerEndPoint = new IPEndPoint(ServerIP, PortIP);
+
+            ServerCertificate = new X509Certificate2(@"C:\c#certificate\rtd2018.pfx", "12345");
 
             TcpListener Server = new TcpListener(ServerEndPoint);
             Console.WriteLine("Servidor creat");
@@ -44,14 +48,13 @@ namespace Server
             //Passem de bytes a string
             s = Encoding.UTF8.GetString(BufferLocal, 0, BytesRebuts);
 
-            string reverseString = ReverseString(s);
+            /*string reverseString = ReverseString(s);
 
             //Passem de string a bytes
             byte[] fraseBytes = Encoding.UTF8.GetBytes(reverseString);
 
             //Enviem al servidor
-            ServerNS.Write(fraseBytes, 0, fraseBytes.Length);
-
+            ServerNS.Write(fraseBytes, 0, fraseBytes.Length);*/
 
             Console.WriteLine("Server finalitzat");
 
